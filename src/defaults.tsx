@@ -19,7 +19,16 @@ function addCourseTour(manager: ITourManager): void {
 
   courseTour.options = {
     ...courseTour.options,
-    hideBackButton: true
+    hideBackButton: true,
+    debug: true,
+    disableScrolling: true,
+    styles: {
+      ...courseTour.options.styles,
+      options: {
+        ...(courseTour.options.styles?.options || {}),
+        zIndex: 10000
+      }
+    }
   };
 
   courseTour.addStep({
