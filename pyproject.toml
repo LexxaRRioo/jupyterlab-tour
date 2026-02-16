@@ -36,31 +36,14 @@ fields = ["description", "authors", "urls"]
 artifacts = ["jupyterlab_tour/labextension"]
 exclude = [".github", "binder"]
 
-[tool.hatch.build.targets.wheel.shared-data]
-"jupyterlab_tour/labextension" = "share/jupyter/labextensions/jupyterlab-tour"
-"install.json" = "share/jupyter/labextensions/jupyterlab-tour/install.json"
+[tool.hatch.build.targets.wheel.force-include]
+"jupyterlab_tour/labextension/package.json" = "jupyterlab_tour_ru.data/data/share/jupyter/labextensions/jupyterlab-tour/package.json"
+"jupyterlab_tour/labextension/schemas" = "jupyterlab_tour_ru.data/data/share/jupyter/labextensions/jupyterlab-tour/schemas"
+"jupyterlab_tour/labextension/static" = "jupyterlab_tour_ru.data/data/share/jupyter/labextensions/jupyterlab-tour/static"
+"install.json" = "jupyterlab_tour_ru.data/data/share/jupyter/labextensions/jupyterlab-tour/install.json"
 
 [tool.hatch.build.hooks.version]
 path = "jupyterlab_tour/_version.py"
-
-[tool.hatch.build.hooks.jupyter-builder]
-dependencies = ["hatch-jupyter-builder>=0.5"]
-build-function = "hatch_jupyter_builder.npm_builder"
-ensured-targets = [
-    "jupyterlab_tour/labextension/static/style.js",
-    "jupyterlab_tour/labextension/package.json",
-]
-skip-if-exists = ["jupyterlab_tour/labextension/static/style.js"]
-
-[tool.hatch.build.hooks.jupyter-builder.build-kwargs]
-build_cmd = "build:prod"
-npm = ["jlpm"]
-
-[tool.hatch.build.hooks.jupyter-builder.editable-build-kwargs]
-build_cmd = "install:extension"
-npm = ["jlpm"]
-source_dir = "src"
-build_dir = "jupyterlab_tour/labextension"
 
 [tool.jupyter-releaser.options]
 version_cmd = "hatch version"
