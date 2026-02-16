@@ -22,11 +22,20 @@ function addCourseTour(manager: ITourManager): void {
     hideBackButton: true,
     debug: true,
     disableScrolling: true,
+    disableOverlayClose: true,
     styles: {
       ...courseTour.options.styles,
       options: {
         ...(courseTour.options.styles?.options || {}),
-        zIndex: 10000
+        zIndex: 999999,
+        overlayColor: 'rgba(0, 0, 0, 0.7)'
+      },
+      overlay: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
       }
     }
   };
