@@ -17,12 +17,20 @@ function addCourseTour(manager: ITourManager): void {
     version: 20240216
   });
 
+  // Option B: floaterProps + all other options
   courseTour.options = {
     ...courseTour.options,
     hideBackButton: true,
     debug: true,
     disableScrolling: true,
     disableOverlayClose: true,
+    floaterProps: {
+      disableAnimation: true,
+      offset: 0,
+      styles: {
+        floater: { filter: 'none' }
+      }
+    },
     styles: {
       ...courseTour.options.styles,
       options: {
@@ -40,8 +48,9 @@ function addCourseTour(manager: ITourManager): void {
     }
   };
 
+  // Step 1: Option A - use 'body' instead of '#jp-main-dock-panel'
   courseTour.addStep({
-    target: '#jp-main-dock-panel',
+    target: 'body',
     content: (
       <>
         <p><strong>Добро пожаловать в курс Python для дата-инженеров!</strong></p>
@@ -49,9 +58,11 @@ function addCourseTour(manager: ITourManager): void {
       </>
     ),
     placement: 'center',
+    isFixed: true,
     title: 'Добро пожаловать!'
   });
 
+  // Step 2: Option C - isFixed: true + placement: bottom
   courseTour.addStep({
     target: '.jp-NotebookPanel-toolbar',
     content: (
@@ -64,10 +75,12 @@ function addCourseTour(manager: ITourManager): void {
         </ul>
       </>
     ),
-    placement: 'center',
+    placement: 'bottom',
+    isFixed: true,
     title: 'Панель инструментов'
   });
 
+  // Step 3: Option C - isFixed: true + placement: bottom
   courseTour.addStep({
     target: '.jp-Cell.jp-Notebook-cell',
     content: (
@@ -77,10 +90,12 @@ function addCourseTour(manager: ITourManager): void {
         <p><small>Или <kbd>Ctrl</kbd>+<kbd>Enter</kbd> чтобы выполнить и остаться на месте.</small></p>
       </>
     ),
-    placement: 'center',
+    placement: 'bottom',
+    isFixed: true,
     title: 'Ячейка кода'
   });
 
+  // Step 4: Option C - isFixed: true + placement: bottom
   courseTour.addStep({
     target: '#jp-MainMenu',
     content: (
@@ -89,12 +104,14 @@ function addCourseTour(manager: ITourManager): void {
         <p><small>Также там есть полезные настройки отображения.</small></p>
       </>
     ),
-    placement: 'center',
+    placement: 'bottom',
+    isFixed: true,
     title: 'Меню'
   });
 
+  // Step 5: Option A - use 'body' instead of '#jp-main-dock-panel'
   courseTour.addStep({
-    target: '#jp-main-dock-panel',
+    target: 'body',
     content: (
       <>
         <p>Теперь вы готовы начать!</p>
@@ -103,6 +120,7 @@ function addCourseTour(manager: ITourManager): void {
       </>
     ),
     placement: 'center',
+    isFixed: true,
     title: 'Готово!'
   });
 }
