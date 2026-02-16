@@ -119,7 +119,7 @@
     "schemaDir": "schema",
     "outputDir": "jupyterlab_tour/labextension",
     "_build": {
-      "load": "static/remoteEntry.ed001807d644a8ee61f2.js",
+      "load": "static/remoteEntry.68162f003470a331e4dc.js",
       "extension": "./extension",
       "style": "./style"
     }

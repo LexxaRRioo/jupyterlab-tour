@@ -64,7 +64,7 @@ function addCourseTour(manager: ITourManager): void {
         </ul>
       </>
     ),
-    placement: 'bottom',
+    placement: 'center',
     title: 'Панель инструментов'
   });
 
@@ -77,7 +77,7 @@ function addCourseTour(manager: ITourManager): void {
         <p><small>Или <kbd>Ctrl</kbd>+<kbd>Enter</kbd> чтобы выполнить и остаться на месте.</small></p>
       </>
     ),
-    placement: 'bottom',
+    placement: 'center',
     title: 'Ячейка кода'
   });
 
@@ -89,7 +89,7 @@ function addCourseTour(manager: ITourManager): void {
         <p><small>Также там есть полезные настройки отображения.</small></p>
       </>
     ),
-    placement: 'bottom',
+    placement: 'center',
     title: 'Меню'
   });
 
