@@ -259,15 +259,15 @@ export class TourManager implements ITourManager {
       if (force) {
         startTours();
       } else {
-        Notification.info(this._trans.__('Try the %1.', tourList[0].label), {
+        Notification.info(this._trans.__('Познакомить с интерфейсом Jupyter?'), {
           autoClose: 10000,
           actions: [
             {
-              label: this._trans.__('Start now'),
+              label: this._trans.__('Да'),
               callback: startTours
             },
             {
-              label: this._trans.__("Don't show me again"),
+              label: this._trans.__('Нет'),
               callback: (): void => {
                 tourList.forEach(tour => this._rememberDoneTour(tour.id));
               }
