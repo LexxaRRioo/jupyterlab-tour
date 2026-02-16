@@ -14,7 +14,7 @@ import { ITranslator, nullTranslator } from '@jupyterlab/translation';
 import { Widget } from '@lumino/widgets';
 import React from 'react';
 import { TourContainer } from './components';
-import { CommandIDs, NOTEBOOK_ID, WELCOME_ID } from './constants';
+import { CommandIDs, COURSE_TOUR_ID } from './constants';
 import { addTours } from './defaults';
 import { tourIcon } from './icons';
 import { TourButton } from './notebookButton';
@@ -232,28 +232,23 @@ function activateDefaults(
 ): void {
   addTours(tourManager, app, nbTracker);
 
-  if (
-    nbTracker &&
-    (app.name !== 'Jupyter Notebook' ||
-      window.location.pathname.match(/\/notebooks\/.+$/))
-  ) {
+  // Show notification and launch course tour when notebook is opened
+  if (nbTracker) {
+    let tourShown = false;
+
     nbTracker.widgetAdded.connect(() => {
-      if (tourManager.tours.has(NOTEBOOK_ID)) {
-        tourManager.launch([NOTEBOOK_ID], false);
+      if (tourShown) return;
+
+      if (tourManager.tours.has(COURSE_TOUR_ID)) {
+        // Wait for notebook to load, then show notification
+        setTimeout(() => {
+          // Check if tour was already seen (stored in tourManager state)
+          tourManager.launch([COURSE_TOUR_ID], false);
+          tourShown = true;
+        }, 2000);
       }
     });
   }
-
-  Promise.all([app.restored, tourManager.ready]).then(() => {
-    if (
-      tourManager.tours.has(WELCOME_ID) &&
-      (app.name !== 'Jupyter Notebook' ||
-        window.location.pathname.match(/\/tree(\/.+)?$/))
-    ) {
-      // Wait 3s before launching the first tour - to be sure element are loaded
-      setTimeout(() => tourManager.launch([WELCOME_ID], false), 3000);
-    }
-  });
 }
 
 export default [corePlugin, userPlugin, notebookPlugin, defaultsPlugin];

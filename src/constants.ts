@@ -14,6 +14,7 @@ export namespace CommandIDs {
  */
 export const WELCOME_ID = `${NS}:welcome`;
 export const NOTEBOOK_ID = `${NS}:notebook`;
+export const COURSE_TOUR_ID = `${NS}:python-course`;
 
 /**
  * Default tour options
